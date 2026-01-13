@@ -64,7 +64,9 @@ public:
 	void setTransformation(float x, float y, float a, float sx, float sy, float ox, float oy, float kx, float ky);
 
 	love::Vector2 transformPoint(love::Vector2 p) const;
+	love::Vector3 transformPoint(love::Vector3 p) const;
 	love::Vector2 inverseTransformPoint(love::Vector2 p);
+	love::Vector3 inverseTransformPoint(love::Vector3 p);
 
 	const Matrix4 &getMatrix() const;
 	void setMatrix(const Matrix4 &m);
