@@ -262,26 +262,70 @@ int w_Transform_getMatrix(lua_State *L)
 
 int w_Transform_transformPoint(lua_State *L)
 {
+	int nargs = lua_gettop(L);
+
 	Transform *t = luax_checktransform(L, 1);
-	love::Vector2 p;
-	p.x = (float) luaL_checknumber(L, 2);
-	p.y = (float) luaL_checknumber(L, 3);
-	p = t->transformPoint(p);
-	lua_pushnumber(L, p.x);
-	lua_pushnumber(L, p.y);
-	return 2;
+	nargs -= 1;
+
+	int ret = 0;
+	switch (nargs) {
+		case 2: {
+			love::Vector2 p;
+			p.x = (float) luaL_checknumber(L, 2);
+			p.y = (float) luaL_checknumber(L, 3);
+			p = t->transformPoint(p);
+			lua_pushnumber(L, p.x);
+			lua_pushnumber(L, p.y);
+			ret = 2;
+		} break;
+		case 3: {
+			love::Vector3 p;
+			p.x = (float) luaL_checknumber(L, 2);
+			p.y = (float) luaL_checknumber(L, 3);
+			p.z = (float) luaL_checknumber(L, 4);
+			p = t->transformPoint(p);
+			lua_pushnumber(L, p.x);
+			lua_pushnumber(L, p.y);
+			lua_pushnumber(L, p.z);
+			ret = 3;
+		} break;
+	}
+
+	return ret;
 }
 
 int w_Transform_inverseTransformPoint(lua_State *L)
 {
+	int nargs = lua_gettop(L);
+
 	Transform *t = luax_checktransform(L, 1);
-	love::Vector2 p;
-	p.x = (float) luaL_checknumber(L, 2);
-	p.y = (float) luaL_checknumber(L, 3);
-	p = t->inverseTransformPoint(p);
-	lua_pushnumber(L, p.x);
-	lua_pushnumber(L, p.y);
-	return 2;
+	nargs -= 1;
+
+	int ret = 0;
+	switch (nargs) {
+		case 2: {
+			love::Vector2 p;
+			p.x = (float) luaL_checknumber(L, 2);
+			p.y = (float) luaL_checknumber(L, 3);
+			p = t->inverseTransformPoint(p);
+			lua_pushnumber(L, p.x);
+			lua_pushnumber(L, p.y);
+			ret = 2;
+		} break;
+		case 3: {
+			love::Vector3 p;
+			p.x = (float) luaL_checknumber(L, 2);
+			p.y = (float) luaL_checknumber(L, 3);
+			p.z = (float) luaL_checknumber(L, 4);
+			p = t->inverseTransformPoint(p);
+			lua_pushnumber(L, p.x);
+			lua_pushnumber(L, p.y);
+			lua_pushnumber(L, p.z);
+			ret = 3;
+		} break;
+	}
+
+	return ret;
 }
 
 int w_Transform__mul(lua_State *L)

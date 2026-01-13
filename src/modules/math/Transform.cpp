@@ -111,10 +111,24 @@ love::Vector2 Transform::transformPoint(love::Vector2 p) const
 	return result;
 }
 
+love::Vector3 Transform::transformPoint(love::Vector3 p) const
+{
+	love::Vector3 result;
+	matrix.transformXYZ(&result, &p, 1);
+	return result;
+}
+
 love::Vector2 Transform::inverseTransformPoint(love::Vector2 p)
 {
 	love::Vector2 result;
 	getInverseMatrix().transformXY(&result, &p, 1);
+	return result;
+}
+
+love::Vector3 Transform::inverseTransformPoint(love::Vector3 p)
+{
+	love::Vector3 result;
+	getInverseMatrix().transformXYZ(&result, &p, 1);
 	return result;
 }
 
